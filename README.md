@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Upcycle
 
-## Getting Started
+UpCycle est une marketplace créative dédiée aux petits créateurs de mode. Ils y vendent des pièces uniques issues de vêtements transformés, tout en personnalisant leur page (couleurs, polices, stickers…). Un tremplin pour exprimer leur style et, peut-être, lancer leur propre marque.
 
-First, run the development server:
+## Technologies Utilisées
+
+- **Framework**: Next.js 14
+- **Langage**: TypeScript
+- **Base de données**: PostgreSQL avec Prisma ORM
+- **Authentification**: NextAuth.js
+- **UI/UX**:
+  - Tailwind CSS
+  - Radix UI
+  - Shadcn/ui
+- **Gestion des images**: Cloudinary
+- **Validation**: Zod
+- **Formulaires**: React Hook Form
+
+## Prérequis
+
+- Node.js 18+
+- pnpm 10+
+- PostgreSQL
+- Docker (optionnel)
+
+## Installation
+
+1. Cloner le repository :
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone [URL_DU_REPO]
+cd upcycle
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Installer les dépendances :
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Configurer les variables d'environnement :
 
-## Learn More
+```bash
+cp .env.example .env
+```
 
-To learn more about Next.js, take a look at the following resources:
+Remplir les variables nécessaires dans le fichier `.env`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Initialiser la base de données :
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+pnpm db:push
+pnpm db:seed
+```
 
-## Deploy on Vercel
+## Développement
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Lancer le serveur de développement :
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+pnpm dev
+```
+
+L'application sera accessible à l'adresse [http://localhost:3000](http://localhost:3000)
+
+## Scripts Disponibles
+
+- `pnpm dev` : Lance le serveur de développement
+- `pnpm build` : Compile l'application pour la production
+- `pnpm start` : Démarre l'application en mode production
+- `pnpm lint` : Vérifie le code avec ESLint
+- `pnpm format` : Formate le code avec Prettier
+- `pnpm type-check` : Vérifie les types TypeScript
+- `pnpm db:push` : Met à jour le schéma de la base de données
+- `pnpm db:seed` : Remplit la base de données avec des données de test
+
+## Structure du Projet
+
+```
+upcycle/
+├── app/              # Routes et pages de l'application
+├── components/       # Composants React réutilisables
+├── lib/             # Utilitaires et configurations
+├── prisma/          # Schéma et migrations de la base de données
+├── public/          # Fichiers statiques
+├── types/           # Types TypeScript
+└── hooks/           # Hooks React personnalisés
+```
+
+## Licence
+
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
