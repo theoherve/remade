@@ -49,10 +49,8 @@ export default function MainCategories() {
   };
 
   return (
-    <section className="bg-gray-50 py-8">
-      <div className="container p-0 mx-auto">
-        <h2 className="text-2xl font-bold mb-6 text-center">Catégories principales</h2>
-        
+    <section className="bg-gray-50">
+      <div>
         {/* Version mobile avec carrousel */}
         <div className="md:hidden relative">
           <Button
@@ -75,7 +73,7 @@ export default function MainCategories() {
                 href={`/explore?category=${category.name.toLowerCase()}`}
                 className="block flex-none w-[280px] snap-center"
               >
-                <Card className="h-full">
+                <Card className="h-full shadow-none border-x">
                   <CardContent className="p-6 flex flex-col items-center text-center">
                     <span className="text-4xl mb-4">{category.icon}</span>
                     <h3 className="font-semibold mb-2">{category.name}</h3>
@@ -99,14 +97,14 @@ export default function MainCategories() {
         </div>
 
         {/* Version desktop avec grille */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="hidden md:flex md:flex-row lg:flex-row justify-between">
           {mainCategories.map((category) => (
             <Link
               key={category.name}
               href={`/explore?category=${category.name.toLowerCase()}`}
-              className="block transition-transform hover:scale-[1.02]"
+              className="block transition-transform hover:scale-[1.02] w-[280px]"
             >
-              <Card className="h-full">
+              <Card className="h-full shadow-none border-x">
                 <CardContent className="p-6 flex flex-col items-center text-center">
                   <span className="text-4xl mb-4">{category.icon}</span>
                   <h3 className="font-semibold mb-2">{category.name}</h3>
@@ -127,4 +125,4 @@ export default function MainCategories() {
       `}</style>
     </section>
   );
-} 
+}

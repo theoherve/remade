@@ -6,15 +6,7 @@ import { Menu, X, Search, User, ShoppingBag, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { getAllCategories } from '@/lib/actions/category';
-import { useSession } from 'next-auth/react';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { Category } from '@prisma/client';
 import MegaMenu from './MegaMenu';
 
@@ -42,8 +34,6 @@ export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
-  const { data: session } = useSession();
-  const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isCategoryHovered, setIsCategoryHovered] = useState(false);
@@ -79,25 +69,16 @@ export function Navbar() {
     fetchCategories();
   }, []);
 
-  const handleHomeClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (session) {
-      router.push('/');
-    } else {
-      router.push('/login');
-    }
-  };
-
   return (
     <nav className="sticky top-0 z-50 w-full bg-white bg-opacity-80 backdrop-blur-md border-b py-3">
       <div className="container flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" onClick={handleHomeClick} className="flex items-center">
+        <Link href="/" className="flex items-center">
           <span className="text-2xl font-handwriting font-bold text-upcycle-purple">UpCycle</span>
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-6">
+        <div className="hidden md:flex gap-x-6 items-center">
           <Link href="/products" className="font-medium hover:text-upcycle-purple transition-colors">
             Explorer
           </Link>
@@ -110,7 +91,7 @@ export function Navbar() {
             <Button
               variant="link"
               className={
-                "font-medium flex items-center transition-colors text-black hover:text-upcycle-purple"
+                "font-medium flex items-center transition-colors text-black hover:text-upcycle-purple p-0 text-md "
               }
             >
               Catégories
