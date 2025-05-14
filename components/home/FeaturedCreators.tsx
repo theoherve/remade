@@ -20,30 +20,36 @@ interface Creator {
   } | null;
 }
 
-export default function FeaturedCreators() {
-  const [creators, setCreators] = useState<Creator[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+interface FeaturedCreatorsProps {
+  initialCreators?: Creator[];
+}
+
+export default function FeaturedCreators({ initialCreators = [] }: FeaturedCreatorsProps) {
+  const [creators, setCreators] = useState<Creator[]>(initialCreators);
+  const [isLoading, setIsLoading] = useState(!initialCreators.length);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchCreators = async () => {
-      try {
-        const response = await fetch('/api/creators/featured');
-        if (!response.ok) {
-          throw new Error('Impossible de charger les créateurs');
+    if (initialCreators.length === 0) {
+      const fetchCreators = async () => {
+        try {
+          const response = await fetch('/api/creators/featured');
+          if (!response.ok) {
+            throw new Error('Impossible de charger les créateurs');
+          }
+          const data = await response.json();
+          setCreators(data);
+        } catch (error) {
+          console.error('Error fetching featured creators:', error);
+          setError(error instanceof Error ? error.message : 'Une erreur est survenue');
+        } finally {
+          setIsLoading(false);
         }
-        const data = await response.json();
-        setCreators(data);
-      } catch (error) {
-        console.error('Error fetching featured creators:', error);
-        setError(error instanceof Error ? error.message : 'Une erreur est survenue');
-      } finally {
-        setIsLoading(false);
-      }
-    };
+      };
 
-    fetchCreators();
-  }, []);
+      fetchCreators();
+    }
+  }, [initialCreators]);
 
   if (isLoading) {
     return (
@@ -113,45 +119,27 @@ export default function FeaturedCreators() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {creators.map((creator) => (
-            <Link
-              key={creator.id}
-              href={`/creators/${creator.id}`}
-              className="block transition-transform hover:scale-[1.02]"
-            >
-              <Card>
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-4">
-                    <Avatar className="w-16 h-16">
-                      <AvatarImage
-                        src={creator.profile?.avatar || undefined}
-                        alt={creator.name || 'Créateur'}
-                      />
-                      <AvatarFallback>
-                        {creator.name?.substring(0, 2).toUpperCase() || 'CR'}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold truncate">
-                        {creator.name || 'Créateur'}
-                      </h3>
-                      <p className="text-sm text-muted-foreground truncate">
-                        {creator.shop?.name || 'Boutique'}
-                      </p>
-                      <div className="flex items-center gap-1 mt-1">
-                        <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                        <span className="text-sm">4.8</span>
-                      </div>
-                    </div>
+            <Card key={creator.id}>
+              <CardContent className="p-6">
+                <div className="flex items-center gap-4">
+                  <Avatar className="w-16 h-16">
+                    <AvatarImage src={creator.profile?.avatar || undefined} />
+                    <AvatarFallback>
+                      {creator.name?.charAt(0) || creator.email.charAt(0)}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <h3 className="font-semibold text-lg">
+                      {creator.name || creator.email}
+                    </h3>
+                    {creator.shop && (
+                      <p className="text-muted-foreground">{creator.shop.name}</p>
+                    )}
                   </div>
-                </CardContent>
-              </Card>
-            </Link>
+                </div>
+              </CardContent>
+            </Card>
           ))}
-        </div>
-        <div className="text-center mt-8">
-          <Button variant="outline" asChild>
-            <Link href="/creators">Voir tous les créateurs</Link>
-          </Button>
         </div>
       </div>
     </section>

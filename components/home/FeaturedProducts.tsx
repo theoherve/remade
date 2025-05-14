@@ -11,37 +11,47 @@ type ProductWithRelations = Product & {
   shop: {
     name: string;
     user: {
+      name: string | null;
       profile: {
-        name: string;
-        avatarUrl: string | null;
-      };
+        id: string;
+        avatar: string | null;
+        bio: string | null;
+        location: string | null;
+        phoneNumber: string | null;
+      } | null;
     };
   };
 };
 
-export default function FeaturedProducts() {
-  const [products, setProducts] = useState<ProductWithRelations[]>([]);
-  const [loading, setLoading] = useState(true);
+interface FeaturedProductsProps {
+  initialProducts?: ProductWithRelations[];
+}
+
+export default function FeaturedProducts({ initialProducts = [] }: FeaturedProductsProps) {
+  const [products, setProducts] = useState<ProductWithRelations[]>(initialProducts);
+  const [loading, setLoading] = useState(!initialProducts.length);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch('/api/featured');
-        if (!response.ok) {
-          throw new Error('Failed to fetch featured products');
+    if (initialProducts.length === 0) {
+      const fetchProducts = async () => {
+        try {
+          const response = await fetch('/api/featured');
+          if (!response.ok) {
+            throw new Error('Failed to fetch featured products');
+          }
+          const data = await response.json();
+          setProducts(data);
+        } catch (err) {
+          setError(err instanceof Error ? err.message : 'An error occurred');
+        } finally {
+          setLoading(false);
         }
-        const data = await response.json();
-        setProducts(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred');
-      } finally {
-        setLoading(false);
-      }
-    };
+      };
 
-    fetchProducts();
-  }, []);
+      fetchProducts();
+    }
+  }, [initialProducts]);
 
   if (loading) {
     return (
@@ -108,7 +118,7 @@ export default function FeaturedProducts() {
               price={product.price}
               images={product.images}
               shopName={product.shop.name}
-              creatorName={product.shop.user.profile.name}
+              creatorName={product.shop.user.name}
               productId={product.id}
               createdAt={product.createdAt}
               materials={product.materials}
