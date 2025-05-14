@@ -1,5 +1,3 @@
-'use client';
-
 import { prisma } from "@/lib/prisma";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
 import FeaturedCreators from "@/components/home/FeaturedCreators";
