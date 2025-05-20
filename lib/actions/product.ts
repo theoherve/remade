@@ -185,28 +185,33 @@ export async function getProductsByCategory(categoryId: string) {
 }
 
 export async function searchProducts(query: string) {
-  return prisma.product.findMany({
-    where: {
-      OR: [
-        { name: { contains: query, mode: "insensitive" } },
-        { description: { contains: query, mode: "insensitive" } },
-      ],
-    },
-    include: {
-      category: true,
-      shop: {
-        select: {
-          name: true,
-          userId: true,
+  try {
+    return await prisma.product.findMany({
+      where: {
+        OR: [
+          { name: { contains: query, mode: "insensitive" } },
+          { description: { contains: query, mode: "insensitive" } },
+        ],
+      },
+      include: {
+        category: true,
+        shop: {
+          select: {
+            name: true,
+            userId: true,
+          },
+        },
+        creator: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          },
         },
       },
-      creator: {
-        select: {
-          id: true,
-          name: true,
-          email: true,
-        },
-      },
-    },
-  });
+    });
+  } catch (error) {
+    console.error("Error searching products:", error);
+    return [];
+  }
 }

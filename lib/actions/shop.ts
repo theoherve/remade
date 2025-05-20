@@ -15,7 +15,7 @@ export async function getShopProducts(shopId: string) {
     return products;
   } catch (error) {
     console.error("Error fetching shop products:", error);
-    throw new Error("Failed to fetch shop products");
+    return [];
   }
 }
 
@@ -32,7 +32,7 @@ export async function getShopDetails(shopId: string) {
     return shop;
   } catch (error) {
     console.error("Error fetching shop details:", error);
-    throw new Error("Failed to fetch shop details");
+    return null;
   }
 }
 
@@ -49,6 +49,6 @@ export async function getShopByUserId(userId: string) {
     return shop;
   } catch (error) {
     console.error("Error fetching shop by user ID:", error);
-    throw new Error("Failed to fetch shop by user ID");
+    return null;
   }
 }

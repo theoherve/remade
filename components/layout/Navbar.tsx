@@ -60,7 +60,10 @@ export function Navbar() {
         const data = await response.json();
         setCategories(data);
       } catch (err) {
+        console.error('Error fetching categories:', err);
         setError(err instanceof Error ? err.message : 'An error occurred');
+        // En cas d'erreur, on continue avec un tableau vide
+        setCategories([]);
       } finally {
         setLoading(false);
       }
