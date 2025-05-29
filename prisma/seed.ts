@@ -2,7 +2,7 @@
 import { PrismaClient } from "@prisma/client";
 import { hash } from "bcryptjs";
 
-const prisma = new PrismaClient();
+let prisma = new PrismaClient();
 
 const categories = [
   { name: "Robes", description: "Robes remaniées et personnalisées" },
@@ -151,21 +151,55 @@ const productImages = {
 
 async function main() {
   try {
-    // Nettoyer la base de données
-    await prisma.$transaction([
-      prisma.review.deleteMany(),
-      prisma.orderItem.deleteMany(),
-      prisma.order.deleteMany(),
-      prisma.favorite.deleteMany(),
-      prisma.collectionProduct.deleteMany(),
-      prisma.collection.deleteMany(),
-      prisma.product.deleteMany(),
-      prisma.category.deleteMany(),
-      prisma.tag.deleteMany(),
-      prisma.shop.deleteMany(),
-      prisma.profile.deleteMany(),
-      prisma.user.deleteMany(),
-    ]);
+    // Nettoyer la base de données dans le bon ordre pour respecter les contraintes de clés étrangères et éviter le bug Prisma/Supabase
+    await prisma.review.deleteMany();
+    await prisma.$disconnect();
+    prisma = new PrismaClient();
+
+    // Commenté pour tester la solution 3 (seed par table)
+    // await prisma.orderItem.deleteMany();
+    // await prisma.$disconnect();
+    // prisma = new PrismaClient();
+
+    // await prisma.order.deleteMany();
+    // await prisma.$disconnect();
+    // prisma = new PrismaClient();
+
+    // await prisma.favorite.deleteMany();
+    // await prisma.$disconnect();
+    // prisma = new PrismaClient();
+
+    // await prisma.collectionProduct.deleteMany();
+    // await prisma.$disconnect();
+    // prisma = new PrismaClient();
+
+    // await prisma.collection.deleteMany();
+    // await prisma.$disconnect();
+    // prisma = new PrismaClient();
+
+    // await prisma.product.deleteMany();
+    // await prisma.$disconnect();
+    // prisma = new PrismaClient();
+
+    // await prisma.category.deleteMany();
+    // await prisma.$disconnect();
+    // prisma = new PrismaClient();
+
+    // await prisma.tag.deleteMany();
+    // await prisma.$disconnect();
+    // prisma = new PrismaClient();
+
+    // await prisma.shop.deleteMany();
+    // await prisma.$disconnect();
+    // prisma = new PrismaClient();
+
+    // await prisma.profile.deleteMany();
+    // await prisma.$disconnect();
+    // prisma = new PrismaClient();
+
+    // await prisma.user.deleteMany();
+    // await prisma.$disconnect();
+    // prisma = new PrismaClient();
 
     // Créer les catégories
     const createdCategories = await Promise.all(
