@@ -1,0 +1,17 @@
+id,userId,avatar,bio,location,phoneNumber,createdAt,updatedAt
+clg1234567931,clg1234567915,,Administrateur de UpCycle,Paris France,,2024-03-19T00:00:00.000Z,2024-03-19T00:00:00.000Z
+clg1234567932,clg1234567916,https://i.pravatar.cc/150?img=10,Créateur passionné de mode durable et de remaniement,Paris France,,2024-03-19T00:00:00.000Z,2024-03-19T00:00:00.000Z
+clg1234567933,clg1234567917,https://i.pravatar.cc/150?img=11,Créateur passionné de mode durable et de remaniement,Lyon France,,2024-03-19T00:00:00.000Z,2024-03-19T00:00:00.000Z
+clg1234567934,clg1234567918,https://i.pravatar.cc/150?img=12,Créateur passionné de mode durable et de remaniement,Bordeaux France,,2024-03-19T00:00:00.000Z,2024-03-19T00:00:00.000Z
+clg1234567935,clg1234567919,https://i.pravatar.cc/150?img=13,Créateur passionné de mode durable et de remaniement,Marseille France,,2024-03-19T00:00:00.000Z,2024-03-19T00:00:00.000Z
+clg1234567936,clg1234567920,https://i.pravatar.cc/150?img=14,Créateur passionné de mode durable et de remaniement,Lille France,,2024-03-19T00:00:00.000Z,2024-03-19T00:00:00.000Z
+clg1234567937,clg1234567921,https://i.pravatar.cc/150?img=20,Passionné de mode durable,Paris France,,2024-03-19T00:00:00.000Z,2024-03-19T00:00:00.000Z
+clg1234567938,clg1234567922,https://i.pravatar.cc/150?img=21,Passionné de mode durable,Lyon France,,2024-03-19T00:00:00.000Z,2024-03-19T00:00:00.000Z
+clg1234567939,clg1234567923,https://i.pravatar.cc/150?img=22,Passionné de mode durable,Bordeaux France,,2024-03-19T00:00:00.000Z,2024-03-19T00:00:00.000Z
+clg1234567940,clg1234567924,https://i.pravatar.cc/150?img=23,Passionné de mode durable,Marseille France,,2024-03-19T00:00:00.000Z,2024-03-19T00:00:00.000Z
+clg1234567941,clg1234567925,https://i.pravatar.cc/150?img=24,Passionné de mode durable,Lille France,,2024-03-19T00:00:00.000Z,2024-03-19T00:00:00.000Z
+clg1234567942,clg1234567926,https://i.pravatar.cc/150?img=25,Passionné de mode durable,Nantes France,,2024-03-19T00:00:00.000Z,2024-03-19T00:00:00.000Z
+clg1234567943,clg1234567927,https://i.pravatar.cc/150?img=26,Passionné de mode durable,Toulouse France,,2024-03-19T00:00:00.000Z,2024-03-19T00:00:00.000Z
+clg1234567944,clg1234567928,https://i.pravatar.cc/150?img=27,Passionné de mode durable,Strasbourg France,,2024-03-19T00:00:00.000Z,2024-03-19T00:00:00.000Z
+clg1234567945,clg1234567929,https://i.pravatar.cc/150?img=28,Passionné de mode durable,Nice France,,2024-03-19T00:00:00.000Z,2024-03-19T00:00:00.000Z
+clg1234567946,clg1234567930,https://i.pravatar.cc/150?img=29,Passionné de mode durable,Rennes France,,2024-03-19T00:00:00.000Z,2024-03-19T00:00:00.000Z 
