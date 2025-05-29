@@ -10,27 +10,22 @@ const mainCategories = [
   {
     name: 'Robes',
     description: 'Robes remaniées et personnalisées',
-    icon: '👗',
   },
   {
     name: 'Vestes',
     description: 'Vestes et blazers upcyclés',
-    icon: '🧥',
   },
   {
     name: 'Pantalons',
     description: 'Pantalons et jupes remaniés',
-    icon: '👖',
   },
   {
     name: 'Tops',
     description: 'Tops et chemises upcyclés',
-    icon: '👕',
   },
   {
     name: 'Accessoires',
     description: 'Accessoires et bijoux faits main',
-    icon: '👜',
   },
 ];
 
@@ -75,7 +70,6 @@ export default function MainCategories() {
               >
                 <Card className="h-full shadow-none border-x">
                   <CardContent className="p-6 flex flex-col items-center text-center">
-                    <span className="text-4xl mb-4">{category.icon}</span>
                     <h3 className="font-semibold mb-2">{category.name}</h3>
                     <p className="text-sm text-muted-foreground">
                       {category.description}
@@ -106,7 +100,6 @@ export default function MainCategories() {
             >
               <Card className="h-full shadow-none border-x">
                 <CardContent className="p-6 flex flex-col items-center text-center">
-                  <span className="text-4xl mb-4">{category.icon}</span>
                   <h3 className="font-semibold mb-2">{category.name}</h3>
                   <p className="text-sm text-muted-foreground">
                     {category.description}
