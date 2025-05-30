@@ -2,9 +2,8 @@
 
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 
 const mainCategories = [
   {
@@ -31,10 +30,27 @@ const mainCategories = [
 
 export default function MainCategories() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const scrollIndex = useRef(0);
+
+  // Défilement automatique sur mobile
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+    const cardWidth = 300; // Largeur approximative d'une carte + gap
+    const maxIndex = mainCategories.length - 1;
+    const interval = setInterval(() => {
+      scrollIndex.current = (scrollIndex.current >= maxIndex ? 0 : scrollIndex.current + 1);
+      container.scrollTo({
+        left: scrollIndex.current * cardWidth,
+        behavior: 'smooth',
+      });
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
-      const scrollAmount = 300; // Ajustez cette valeur selon vos besoins
+      const scrollAmount = 300;
       const newScrollLeft = scrollContainerRef.current.scrollLeft + (direction === 'left' ? -scrollAmount : scrollAmount);
       scrollContainerRef.current.scrollTo({
         left: newScrollLeft,
@@ -48,15 +64,6 @@ export default function MainCategories() {
       <div>
         {/* Version mobile avec carrousel */}
         <div className="md:hidden relative">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md"
-            onClick={() => scroll('left')}
-          >
-            <ChevronLeft className="h-6 w-6" />
-          </Button>
-          
           <div
             ref={scrollContainerRef}
             className="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory hide-scrollbar"
@@ -79,15 +86,6 @@ export default function MainCategories() {
               </Link>
             ))}
           </div>
-
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md"
-            onClick={() => scroll('right')}
-          >
-            <ChevronRight className="h-6 w-6" />
-          </Button>
         </div>
 
         {/* Version desktop avec grille */}
