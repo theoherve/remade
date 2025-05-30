@@ -4,6 +4,7 @@ import FeaturedCreators from "@/components/home/FeaturedCreators";
 import MainCategories from '@/components/home/MainCategories';
 import HowItWorks from '@/components/home/HowItWorks';
 import CallToAction from '@/components/home/CallToAction';
+import HeroCarousel from '@/components/home/HeroCarousel';
 import { Product, User } from "@prisma/client";
 
 type ProductWithRelations = Product & {
@@ -111,6 +112,7 @@ export default async function HomePage() {
 
   return (
     <main>
+      <HeroCarousel />
       <MainCategories />
       <FeaturedProducts initialProducts={featuredProducts} />
       <FeaturedCreators initialCreators={featuredCreators} />
