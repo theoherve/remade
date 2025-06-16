@@ -4,14 +4,14 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 36 100% 96%; /* #fffcf2 */
     --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
+    --card: 36 100% 96%;
     --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
+    --popover: 36 100% 96%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 260 76% 74%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 22 81% 54%; /* #e86b27 */
+    --primary-foreground: 36 100% 96%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
@@ -54,17 +54,40 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground;
+    font-family: 'Unbounded', sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
 @layer components {
   .btn-upcycle {
-    @apply px-6 py-3 rounded-full bg-upcycle-purple text-white font-medium shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1;
+    @apply px-6 py-3 rounded-full bg-primary text-background font-medium shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-primary/90;
   }
 
   .card-hover {
     @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-lg;
   }
+}
+
+@font-face {
+  font-family: 'Unbounded';
+  src: url('/REMADE/TYPO_Unbounded/static/Unbounded-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Unbounded';
+  src: url('/REMADE/TYPO_Unbounded/static/Unbounded-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Unbounded';
+  src: url('/REMADE/TYPO_Unbounded/static/Unbounded-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }

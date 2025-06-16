@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const Hero = () => {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-upcycle-purple/10 to-background py-16 md:py-24">
+    <section className="relative overflow-hidden bg-gradient-to-br from-primary/10 to-background py-16 md:py-24">
       {/* Decorative Elements */}
       <div className="absolute top-10 left-10 sticker animate-float opacity-30">
         ✂️
@@ -20,7 +20,7 @@ const Hero = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="space-y-6">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              Donnez une <span className="text-upcycle-purple font-handwriting">nouvelle vie</span> aux vêtements
+              Donnez une <span className="text-primary font-handwriting">nouvelle vie</span> aux vêtements
             </h1>
             <p className="text-lg md:text-xl text-gray-700">
               UpCycle est la marketplace qui permet aux créateurs de transformer des vêtements usagés en pièces uniques et de les vendre directement aux amateurs de mode responsable.
@@ -29,7 +29,7 @@ const Hero = () => {
               <Button className="btn-upcycle" asChild>
                 <Link href="/explore">Explorer les créations</Link>
               </Button>
-              <Button variant="outline" className="border-upcycle-purple text-upcycle-purple hover:bg-upcycle-purple/10" asChild>
+              <Button variant="outline" className="border-primary text-primary hover:bg-primary/10" asChild>
                 <Link href="/become-creator">Devenir créateur</Link>
               </Button>
             </div>

@@ -77,7 +77,7 @@ const CreatorProducts: React.FC<CreatorProductsProps> = ({ products, accentColor
           <TabsTrigger 
             value="all" 
             onClick={() => setActiveTab('all')}
-            className={activeTab === 'all' ? 'bg-upcycle-purple text-white' : ''}
+            className={activeTab === 'all' ? 'bg-primary text-background' : ''}
             style={activeTab === 'all' ? accentStyle : {}}
           >
             Tout
@@ -87,7 +87,7 @@ const CreatorProducts: React.FC<CreatorProductsProps> = ({ products, accentColor
               key={category} 
               value={category.toLowerCase()}
               onClick={() => setActiveTab(category.toLowerCase())}
-              className={activeTab === category.toLowerCase() ? 'bg-upcycle-purple text-white' : ''}
+              className={activeTab === category.toLowerCase() ? 'bg-primary text-background' : ''}
               style={activeTab === category.toLowerCase() ? accentStyle : {}}
             >
               {category}

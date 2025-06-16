@@ -39,7 +39,7 @@ export function FavoriteButton({
       size="icon"
       onClick={handleToggleFavorite}
       disabled={isLoading}
-      className={`${isFavorite ? "text-red-500" : ""} hover:bg-upcycle-purple`}
+      className={`${isFavorite ? "text-red-500" : ""} hover:bg-primary`}
     >
       <Heart className="h-5 w-5" fill={isFavorite ? "currentColor" : "none"} />
       <span className="sr-only">

@@ -23,7 +23,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ categories, categoryIcons, onMouseE
 
   return (
     <div
-      className="fixed left-0 right-0 top-[72px] w-screen bg-white border-b shadow-lg z-40 py-8 px-16"
+      className="fixed left-0 right-0 top-[72px] w-screen bg-neutral-500 border-b shadow-lg z-40 py-8 px-16"
     >
       <div className="max-w-7xl mx-auto grid grid-cols-4 gap-8">
         {colCategories.map((cats, colIdx) => (
@@ -32,7 +32,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ categories, categoryIcons, onMouseE
               <Link
                 key={category.id}
                 href={`/category/${category.id}`}
-                className="flex items-center space-x-2 hover:text-upcycle-purple transition"
+                className="flex items-center space-x-2 text-neutral-900 hover:text-primary transition"
               >
                 <span className="text-2xl">{categoryIcons[category.name] || '🏷️'}</span>
                 <span>{category.name}</span>

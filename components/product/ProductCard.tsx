@@ -37,7 +37,7 @@ export default function ProductCard({ product, creatorName, creatorAvatar, isFav
             />
             <div className="absolute top-2 left-2 flex flex-col gap-2">
               {new Date(product.createdAt).getTime() > Date.now() - 7 * 24 * 60 * 60 * 1000 && (
-                <Badge className="bg-upcycle-purple hover:bg-upcycle-purple/90">Nouveau</Badge>
+                <Badge className="bg-primary hover:bg-primary/90">Nouveau</Badge>
               )}
               {product.materials.some(material => material.toLowerCase().includes('recyclé') || material.toLowerCase().includes('bio')) && (
                 <Badge variant="secondary" className="bg-upcycle-light-purple hover:bg-upcycle-light-purple/90">
@@ -67,7 +67,7 @@ export default function ProductCard({ product, creatorName, creatorAvatar, isFav
           <p className="font-bold">{product.price.toFixed(2)} €</p>
         </CardContent>
         <CardFooter className="p-4 pt-0">
-          <Button className="w-full bg-upcycle-purple hover:bg-upcycle-purple/90">Voir le produit</Button>
+          <Button className="w-full bg-primary hover:bg-primary/90">Voir le produit</Button>
         </CardFooter>
       </Card>
     </Link>

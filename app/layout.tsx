@@ -22,7 +22,7 @@ import AuthProvider from "@/components/providers/AuthProvider";
 // });
 
 export const metadata: Metadata = {
-  title: "UpCycle - Mode éco-responsable",
+  title: "Remade - Mode éco-responsable",
   description: "La marketplace qui permet aux créateurs de transformer des vêtements usagés en pièces uniques.",
 };
 

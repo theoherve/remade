@@ -68,7 +68,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                 <button
                   key={index}
                   onClick={() => setSelectedImage(index)}
-                  className={`aspect-square overflow-hidden rounded-md border ${selectedImage === index ? 'ring-2 ring-upcycle-purple' : ''}`}
+                  className={`aspect-square overflow-hidden rounded-md border ${selectedImage === index ? 'ring-2 ring-primary' : ''}`}
                 >
                   <img
                     src={image}
