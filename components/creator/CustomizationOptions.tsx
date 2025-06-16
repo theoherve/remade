@@ -240,7 +240,7 @@ const CustomizationOptions: React.FC<CustomizationOptionsProps> = ({
               <Label>Arrière-plan</Label>
               <div className="grid grid-cols-3 gap-4 mt-2">
                 <Button variant="outline" className="h-20">Uni</Button>
-                <Button variant="outline" className="h-20 bg-gradient-to-r from-upcycle-purple/30 to-upcycle-teal/30">Dégradé</Button>
+                <Button variant="outline" className="h-20 bg-gradient-to-r from-primary/30 to-upcycle-teal/30">Dégradé</Button>
                 <Button variant="outline" className="h-20 bg-[url('https://www.transparenttextures.com/patterns/fabric-of-squares.png')]">Texture</Button>
               </div>
             </div>

@@ -6,6 +6,11 @@ import HowItWorks from '@/components/home/HowItWorks';
 import CallToAction from '@/components/home/CallToAction';
 import HeroCarousel from '@/components/home/HeroCarousel';
 import { Product, User } from "@prisma/client";
+import Image from 'next/image';
+import SectionNavigationButtons from '@/components/home/SectionNavigationButtons';
+import CreatorCarousel from '@/components/home/CreatorCarousel';
+import HomeCtaNav from '@/components/home/HomeCtaNav';
+import HomeSelectionCarousel from '@/components/home/HomeSelectionCarousel';
 
 type ProductWithRelations = Product & {
   category: { name: string };
@@ -37,87 +42,34 @@ type CreatorWithRelations = {
   } | null;
 };
 
-export default async function HomePage() {
-  let featuredProducts: ProductWithRelations[] = [];
-  let featuredCreators: CreatorWithRelations[] = [];
-
-  try {
-    // Pré-charger les données côté serveur
-    [featuredProducts, featuredCreators] = await Promise.all([
-      prisma.product.findMany({
-        take: 8,
-        where: {
-          status: "ACTIVE",
-        },
-        include: {
-          category: {
-            select: {
-              name: true,
-            },
-          },
-          shop: {
-            select: {
-              name: true,
-              user: {
-                select: {
-                  name: true,
-                  profile: {
-                    select: {
-                      id: true,
-                      avatar: true,
-                      bio: true,
-                      location: true,
-                      phoneNumber: true,
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-        orderBy: {
-          createdAt: "desc",
-        },
-      }),
-      prisma.user.findMany({
-        where: {
-          role: "CREATOR",
-        },
-        select: {
-          id: true,
-          name: true,
-          email: true,
-          profile: {
-            select: {
-              avatar: true,
-              bio: true,
-            },
-          },
-          shop: {
-            select: {
-              name: true,
-            },
-          },
-        },
-        take: 6,
-        orderBy: {
-          createdAt: "desc",
-        },
-      }),
-    ]);
-  } catch (error) {
-    console.error("Error fetching data for homepage:", error);
-    // En cas d'erreur, on continue avec des tableaux vides
-  }
-
+export default function HomePage() {
   return (
-    <main>
-      <HeroCarousel />
-      <MainCategories />
-      <FeaturedProducts initialProducts={featuredProducts} />
-      <FeaturedCreators initialCreators={featuredCreators} />
-      <HowItWorks />
-      <CallToAction />
+    <main className="bg-neutral-500 min-h-screen">
+      {/* Header minimal, logo centré, liens à gauche/droite */}
+      {/* <header className="w-full flex items-center justify-between px-8 py-4 border-b border-black bg-neutral-500">
+        <div className="flex items-center gap-8">
+          <a href="#" className="font-bold text-lg" style={{fontFamily: 'Unbounded'}}>Ma boutique</a>
+        </div>
+        <div className="flex-1 flex justify-center">
+          <span className="text-3xl font-unbounded font-bold text-neutral-900">Remade</span>
+        </div>
+        <div className="flex items-center gap-6">
+          <a href="#" className="font-bold text-base text-neutral-900">se connecter</a>
+          <Image src="/REMADE/SVG/icône_personne.svg" alt="compte" width={28} height={28} />
+          <span className="font-bold text-base text-neutral-900">favoris</span>
+          <Image src="/REMADE/SVG/icône_coeur.svg" alt="favoris" width={28} height={28} />
+        </div>
+      </header> */}
+      {/* Section CTA navigation (4 boutons) */}
+      <HomeCtaNav />
+      {/* Section Remade orange */}
+      <section className="w-full bg-primary flex items-center justify-center py-36">
+        <h1 className="text-7xl md:text-8xl font-unbounded font-bold text-neutral-500">Remade</h1>
+      </section>
+      {/* Carousel sélection créateurs/promos */}
+      <section className="container mx-auto py-12">
+        <HomeSelectionCarousel />
+      </section>
     </main>
   );
 }

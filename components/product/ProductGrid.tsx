@@ -27,10 +27,10 @@ export function ProductGrid({ products, view = 'grid' }: ProductGridProps) {
                     className="object-cover w-full h-full rounded-lg"
                   />
                   {new Date(product.createdAt).getTime() > Date.now() - 7 * 24 * 60 * 60 * 1000 && (
-                    <Badge className="absolute top-2 left-2 bg-upcycle-purple text-white">Nouveau</Badge>
+                    <Badge className="absolute top-2 left-2 bg-primary text-background">Nouveau</Badge>
                   )}
                   {product.materials.some((material: string) => material.toLowerCase().includes('recyclé') || material.toLowerCase().includes('bio')) && (
-                    <Badge variant="secondary" className="absolute top-2 right-2 text-upcycle-purple border-upcycle-purple bg-upcycle-purple/10">
+                    <Badge variant="secondary" className="absolute top-2 right-2 text-primary border-primary bg-primary/10">
                       Eco-responsable
                     </Badge>
                   )}
@@ -47,7 +47,7 @@ export function ProductGrid({ products, view = 'grid' }: ProductGridProps) {
                 </div>
               </CardContent>
               <CardFooter className="p-4 pt-0">
-                <Button className="w-full bg-upcycle-purple hover:bg-upcycle-purple/90 text-white">Voir le détail</Button>
+                <Button className="w-full bg-primary hover:bg-primary/90 text-background">Voir le détail</Button>
               </CardFooter>
             </Card>
           </Link>

@@ -63,7 +63,7 @@ export function ProductCard({
           />
           <div className="absolute top-2 left-2 flex flex-col gap-2 z-10">
             {createdAt && new Date(createdAt).getTime() > Date.now() - 7 * 24 * 60 * 60 * 1000 && (
-              <Badge className="bg-upcycle-purple hover:bg-upcycle-purple/90 whitespace-nowrap w-fit">
+              <Badge className="bg-primary hover:bg-primary/90 whitespace-nowrap w-fit">
                 Nouveau
               </Badge>
             )}
@@ -81,7 +81,7 @@ export function ProductCard({
               material === "Textile écologique" ||
               material === "Fibres végétales"
             ) && (
-              <Badge variant="secondary" className="bg-upcycle-light-purple hover:bg-upcycle-light-purple/90 whitespace-nowrap w-fit">
+              <Badge variant="secondary" className="bg-primary hover:bg-primary/90 whitespace-nowrap w-fit">
                 Éco-responsable
               </Badge>
             )}

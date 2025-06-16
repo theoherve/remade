@@ -9,7 +9,7 @@ const banners = [
     imageUrl: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80",
     buttonText: "Voir la sélection",
     buttonLink: "/explore",
-    bg: "bg-gradient-to-br from-upcycle-purple/20 to-background"
+    bg: "bg-gradient-to-br from-primary/20 to-background"
   },
   {
     title: "-20% sur une sélection",
@@ -17,7 +17,7 @@ const banners = [
     imageUrl: "https://images.unsplash.com/photo-1524253482453-3fed8d2fe12b?auto=format&fit=crop&w=800&q=80",
     buttonText: "J'en profite",
     buttonLink: "/promos",
-    bg: "bg-gradient-to-br from-upcycle-mustard/20 to-background"
+    bg: "bg-gradient-to-br from-primary/20 to-background"
   },
   {
     title: "Créateur de la semaine",
@@ -25,7 +25,7 @@ const banners = [
     imageUrl: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
     buttonText: "Découvrir Marion",
     buttonLink: "/creator/marion",
-    bg: "bg-gradient-to-br from-upcycle-teal/20 to-background"
+    bg: "bg-gradient-to-br from-primary/20 to-background"
   }
 ];
 
@@ -48,7 +48,7 @@ const HeroCarousel = () => {
           <p className="text-lg md:text-xl text-gray-700 mb-4">{banners[index].subtitle}</p>
           <Link
             href={banners[index].buttonLink}
-            className="inline-block w-auto bg-upcycle-purple text-white px-6 py-2 font-semibold hover:bg-upcycle-purple/80 transition self-center md:self-start"
+            className="inline-block w-auto bg-primary text-background px-6 py-2 font-semibold hover:bg-primary/80 transition self-center md:self-start"
           >
             {banners[index].buttonText}
           </Link>
@@ -63,7 +63,7 @@ const HeroCarousel = () => {
           <button
             key={i}
             onClick={() => setIndex(i)}
-            className={`w-3 h-3 rounded-full ${i === index ? 'bg-upcycle-purple' : 'bg-gray-300'} transition`}
+            className={`w-3 h-3 rounded-full ${i === index ? 'bg-primary' : 'bg-gray-300'} transition`}
             aria-label={`Aller à la bannière ${i + 1}`}
           />
         ))}
