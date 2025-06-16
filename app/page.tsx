@@ -61,7 +61,9 @@ export default function HomePage() {
         </div>
       </header> */}
       {/* Section CTA navigation (4 boutons) */}
-      <HomeCtaNav />
+      <div className="hidden md:block">
+        <HomeCtaNav />
+      </div>
       {/* Section Remade orange */}
       <section className="w-full bg-primary flex items-center justify-center py-36">
         <h1 className="text-7xl md:text-8xl font-unbounded font-bold text-neutral-500">Remade</h1>
