@@ -66,7 +66,7 @@ export default function HomeSelectionCarousel() {
                   {card.button}
                 </button>
               </div>
-              <div className="flex-1 md:basis-2/3 relative w-full h-40 md:h-full">
+              <div className="flex-1 md:basis-2/3 relative w-full h-64 md:h-full order-first md:order-none">
                 <Image src={card.image} alt={card.alt} fill priority sizes="(max-width: 768px) 100vw, 66vw" className="object-cover w-full h-full md:rounded-none" />
               </div>
               {/* Points d'indication dans la card */}
