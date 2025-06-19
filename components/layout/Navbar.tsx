@@ -10,6 +10,8 @@ import { usePathname } from 'next/navigation';
 import { Category } from '@prisma/client';
 import MegaMenu from './MegaMenu';
 import Image from 'next/image';
+import { useAuth } from '@/hooks/use-auth';
+import { signOut } from 'next-auth/react';
 
 // Mapping des icônes pour chaque catégorie
 const categoryIcons: { [key: string]: string } = {
@@ -34,6 +36,8 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [mobileSearch, setMobileSearch] = React.useState(false);
   const [isDrawerVisible, setIsDrawerVisible] = React.useState(false);
+  const { session } = useAuth();
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   // Gère l'ouverture/fermeture avec animation
   React.useEffect(() => {
@@ -44,7 +48,7 @@ export function Navbar() {
       const timeout = setTimeout(() => setIsDrawerVisible(false), 300);
       return () => clearTimeout(timeout);
     }
-  }, [mobileOpen]);
+  }, [mobileOpen, isDrawerVisible]);
 
   return (
     <>
@@ -53,14 +57,39 @@ export function Navbar() {
         <div className="flex items-center gap-8">
           <Link href="/collections" className="font-bold text-lg text-neutral-900" style={{fontFamily: 'Unbounded'}}>Ma boutique</Link>
         </div>
-        <div className="flex-1 flex justify-center">
+        <div className="flex-1 flex justify-center items-center gap-4">
           <Link href="/" className="text-3xl font-unbounded font-bold text-neutral-900">Remade</Link>
         </div>
         <div className="flex items-center gap-6">
-          <Link href="/login" className="flex items-center gap-2 font-bold text-base text-neutral-900">
-            se connecter
-            <Image src="/REMADE/SVG/icône_personne.svg" alt="compte" width={28} height={28} />
-          </Link>
+          {session?.user?.name ? (
+            <div className="relative">
+              <button
+                className="flex items-center gap-2 font-bold text-base text-neutral-900 focus:outline-none"
+                onClick={() => setUserMenuOpen((open) => !open)}
+                onBlur={() => setTimeout(() => setUserMenuOpen(false), 150)}
+              >
+                <Image src="/REMADE/SVG/icône_personne.svg" alt="compte" width={28} height={28} />
+                <span className="font-unbounded">{session.user.name}</span>
+                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+              </button>
+              {userMenuOpen && (
+                <div className="absolute right-0 mt-2 w-44 bg-white border border-black rounded shadow-lg z-50">
+                  <Link href="/profile" className="block px-4 py-2 text-neutral-900 hover:bg-neutral-100 font-unbounded">Mon profil</Link>
+                  <button
+                    onClick={() => signOut({ callbackUrl: '/' })}
+                    className="w-full text-left px-4 py-2 text-neutral-900 hover:bg-neutral-100 font-unbounded"
+                  >
+                    Déconnexion
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link href="/login" className="flex items-center gap-2 font-bold text-base text-neutral-900">
+              se connecter
+              <Image src="/REMADE/SVG/icône_personne.svg" alt="compte" width={28} height={28} />
+            </Link>
+          )}
           <Link href="/collections" className="flex items-center gap-2 font-bold text-base text-neutral-900">
             favoris
             <Image src="/REMADE/SVG/icône_coeur.svg" alt="favoris" width={28} height={28} />
@@ -120,7 +149,7 @@ export function Navbar() {
                     onClick={() => setMobileSearch(false)}
                     aria-label="Fermer la recherche"
                   >
-                    ×
+                    <X size={24} />
                   </button>
                 </div>
               )}

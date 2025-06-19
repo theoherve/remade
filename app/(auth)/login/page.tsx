@@ -1,7 +1,7 @@
 import { Metadata } from "next"
-import Link from "next/link"
+import AuthSideHero from "@/components/auth/AuthSideHero"
 import { LoginForm } from "@/components/auth/login-form"
-import { LoginHero } from "@/components/auth/login-hero"
+import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "Login",
@@ -10,24 +10,17 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-    <div className="container relative h-screen flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-2 lg:px-0">
-      <LoginHero />
-      <div className="lg:p-8">
-        <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-          <div className="flex flex-col space-y-2 text-center">
-            <h1 className="text-2xl font-semibold tracking-tight">
-              Connexion à votre compte
-            </h1>
-            <p className="text-sm text-muted-foreground">
-              Entrez votre email et votre mot de passe pour vous connecter
-            </p>
-          </div>
+    <div className="flex min-h-[80vh]">
+      {/* Section gauche : image + texte, cachée sur mobile */}
+      <AuthSideHero />
+      {/* Section droite : formulaire */}
+      <div className="flex flex-1 items-center justify-center bg-neutral-500">
+        <div className="w-full max-w-md p-10">
+          <h1 className="text-3xl font-unbounded font-bold mb-2 text-neutral-900">Connexion à votre compte</h1>
+          <p className="text-lg font-unbounded mb-6 text-neutral-700">Entrez vos identifiants pour accéder à Remade</p>
           <LoginForm />
-          <p className="px-8 text-center text-sm text-muted-foreground">
-            <Link
-              href="/register"
-              className="hover:text-brand underline underline-offset-4"
-            >
+          <p className="mt-6 text-center text-sm text-neutral-600">
+            <Link href="/register" className="hover:text-black underline underline-offset-4 font-unbounded">
               Pas encore de compte ? Inscrivez-vous
             </Link>
           </p>
@@ -35,4 +28,4 @@ export default function LoginPage() {
       </div>
     </div>
   )
-} 
+}

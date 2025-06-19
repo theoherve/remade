@@ -17,7 +17,6 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { toast } from "sonner"
-import { createUser } from "@/lib/actions/user"
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -53,14 +52,19 @@ export function RegisterForm() {
     setIsLoading(true)
 
     try {
-      await createUser({
-        name: values.name,
-        email: values.email,
-        password: values.password,
-      })
-
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: values.name,
+          email: values.email,
+          password: values.password,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error('Erreur lors de la création du compte');
+      }
       toast.success("Compte créé avec succès")
-
       router.push("/login")
     } catch (error) {
       toast.error("Une erreur est survenue lors de la création du compte")
