@@ -12,6 +12,9 @@ export async function getCurrentUser() {
     where: {
       email: session.user.email,
     },
+    include: {
+      profile: true,
+    },
   });
 
   return user;
