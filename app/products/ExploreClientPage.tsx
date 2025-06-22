@@ -103,7 +103,7 @@ export default function ExploreClientPage({ products: initialProducts, categorie
   const pagesToShow = getPagesToShow(page, totalPages);
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container flex flex-col px-4 py-8 bg-neutral-500">
       <div className="flex flex-col gap-8">
         <div className="flex flex-col gap-2">
           <h1 className="text-4xl font-bold">Explorer les créations</h1>
@@ -139,12 +139,12 @@ export default function ExploreClientPage({ products: initialProducts, categorie
                 {activeTags.length > 0 && (
                   <div className="flex flex-wrap gap-2 ml-2">
                     {activeTags.map((tag, i) => (
-                      <Badge key={i} variant="secondary" className="flex items-center gap-1 text-upcycle-purple border-upcycle-purple bg-upcycle-purple/10">
+                      <Badge key={i} variant="secondary" className="flex items-center gap-1 text-primary-200 border-primary-200 bg-neutral-500">
                         {tag}
                         <button onClick={resetFilters} className="ml-1"><X size={12} /></button>
                       </Badge>
                     ))}
-                    <Button variant="ghost" size="sm" onClick={resetFilters} className="text-upcycle-purple">
+                    <Button variant="ghost" size="sm" onClick={resetFilters} className="text-primary-200">
                       Effacer les filtres
                     </Button>
                   </div>
@@ -155,7 +155,7 @@ export default function ExploreClientPage({ products: initialProducts, categorie
                   variant={view === 'grid' ? 'default' : 'outline'}
                   size="icon"
                   onClick={() => setView('grid')}
-                  className={view === 'grid' ? 'bg-upcycle-purple text-white' : ''}
+                  className={view === 'grid' ? 'bg-primary text-white' : ''}
                 >
                   <Grid2X2 className="h-4 w-4" />
                 </Button>
@@ -163,12 +163,12 @@ export default function ExploreClientPage({ products: initialProducts, categorie
                   variant={view === 'list' ? 'default' : 'outline'}
                   size="icon"
                   onClick={() => setView('list')}
-                  className={view === 'list' ? 'bg-upcycle-purple text-white' : ''}
+                  className={view === 'list' ? 'bg-primary text-white' : ''}
                 >
                   <List className="h-4 w-4" />
                 </Button>
                 <Select value={sort} onValueChange={v => setSort(v as any)}>
-                  <SelectTrigger className="w-[180px] border-upcycle-purple">
+                  <SelectTrigger className="w-[180px] border-primary-200">
                     <SelectValue placeholder="Trier par" />
                   </SelectTrigger>
                   <SelectContent>
@@ -188,7 +188,7 @@ export default function ExploreClientPage({ products: initialProducts, categorie
               <div className="flex justify-center gap-2 mt-6">
                 <Button
                   variant="outline"
-                  className="rounded-full w-10 h-10 text-upcycle-purple border-upcycle-purple"
+                  className="rounded-full w-10 h-10 text-primary-200 border-primary-200"
                   onClick={() => goToPage(page - 1)}
                   disabled={page === 1}
                 >
@@ -199,18 +199,18 @@ export default function ExploreClientPage({ products: initialProducts, categorie
                     <Button
                       key={p}
                       variant={page === p ? 'default' : 'outline'}
-                      className={`rounded-full w-10 h-10 ${page === p ? 'bg-upcycle-purple text-white' : 'text-upcycle-purple border-upcycle-purple'}`}
+                      className={`rounded-full w-10 h-10 ${page === p ? 'bg-primary-200 text-white' : 'text-primary-200 border-primary-200'}`}
                       onClick={() => goToPage(p)}
                     >
                       {p}
                     </Button>
                   ) : (
-                    <span key={p + '-' + idx} className="w-10 h-10 flex items-center justify-center text-xl text-upcycle-purple">…</span>
+                    <span key={p + '-' + idx} className="w-10 h-10 flex items-center justify-center text-xl text-primary-200">…</span>
                   )
                 )}
                 <Button
                   variant="outline"
-                  className="rounded-full w-10 h-10 text-upcycle-purple border-upcycle-purple"
+                  className="rounded-full w-10 h-10 text-primary-200 border-primary-200"
                   onClick={() => goToPage(page + 1)}
                   disabled={page === totalPages}
                 >
@@ -223,4 +223,4 @@ export default function ExploreClientPage({ products: initialProducts, categorie
       </div>
     </div>
   );
-} 
+}

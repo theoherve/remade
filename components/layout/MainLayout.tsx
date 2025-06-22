@@ -14,7 +14,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, layoutType = 'client'
   return (
     <div className={`flex flex-col min-h-screen layout-${layoutType}`}>
       <Navbar />
-      <main className="flex-grow">
+      <main className="flex-grow bg-neutral-500">
         {children}
       </main>
       <Footer />
