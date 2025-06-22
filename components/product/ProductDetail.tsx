@@ -44,19 +44,13 @@ export default function ProductDetail({ product }: ProductDetailProps) {
     toast.success(`${product.name} a été ajouté à votre panier.`);
   };
 
-  const accentColor = product.creator.pageSettings?.accentColor || '#9b87f5';
-  const accentStyle = {
-    backgroundColor: accentColor,
-    borderColor: accentColor,
-  };
-
   return (
-    <section className="py-12">
+    <section className="py-12 bg-neutral-500 text-foreground">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Product Images */}
           <div className="space-y-4">
-            <div className="aspect-square rounded-lg overflow-hidden border">
+            <div className="aspect-square rounded-lg overflow-hidden border border-primary/20">
               <img
                 src={product.images[selectedImage]}
                 alt={product.name}
@@ -68,7 +62,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                 <button
                   key={index}
                   onClick={() => setSelectedImage(index)}
-                  className={`aspect-square overflow-hidden rounded-md border ${selectedImage === index ? 'ring-2 ring-primary' : ''}`}
+                  className={`aspect-square overflow-hidden rounded-md border border-primary/20 ${selectedImage === index ? 'ring-2 ring-primary' : ''}`}
                 >
                   <img
                     src={image}
@@ -84,30 +78,28 @@ export default function ProductDetail({ product }: ProductDetailProps) {
           <div className="space-y-6">
             <div>
               <div className="flex gap-2 mb-3">
-                {product.isNew && (
-                  <Badge style={accentStyle}>Nouveau</Badge>
-                )}
+                {product.isNew && <Badge>Nouveau</Badge>}
                 {product.isSustainable && (
-                  <Badge className="bg-upcycle-teal">Eco-responsable</Badge>
+                  <Badge variant="outline" className="border-green-600 text-green-600">
+                    Eco-responsable
+                  </Badge>
                 )}
                 <Badge variant="outline">{product.category}</Badge>
               </div>
-              <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
+              <h1 className="text-3xl font-bold font-unbounded mb-2">{product.name}</h1>
               <div className="flex items-center gap-4 mb-4">
-                <h2 className="text-2xl font-bold">{product.price.toFixed(2)} €</h2>
-                <div className="text-sm text-gray-500">
-                  Pièce unique
-                </div>
+                <h2 className="text-2xl font-bold font-unbounded">{product.price.toFixed(2)} €</h2>
+                <div className="text-sm text-muted-foreground">Pièce unique</div>
               </div>
               <div className="flex items-center gap-4 mb-6">
-                <Link href={`/creator/${product.creator.id}`} className="flex items-center gap-2 hover:underline">
-                  <Avatar className="w-8 h-8">
+                <Link href={`/creator/${product.creator.id}`} className="flex items-center gap-2">
+                  <Avatar className="w-12 h-12">
                     <AvatarImage src={product.creator.avatar} alt={product.creator.name} />
                     <AvatarFallback>{product.creator.name.substring(0, 2)}</AvatarFallback>
                   </Avatar>
-                  <div>
+                  <div className="flex flex-col gap-1">
                     <span className="font-medium">{product.creator.name}</span>
-                    <div className="flex items-center">
+                    <div className="flex items-center gap-1">
                       <Star size={14} className="text-yellow-500 fill-yellow-500" />
                       <span className="text-sm">{product.creator.rating}</span>
                     </div>
@@ -117,19 +109,19 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             </div>
 
             <Tabs defaultValue="description" className="w-full">
-              <TabsList className="w-full grid grid-cols-3">
+              <TabsList className="w-full grid grid-cols-3 bg-primary-100 text-primary">
                 <TabsTrigger value="description">Description</TabsTrigger>
                 <TabsTrigger value="story">Histoire</TabsTrigger>
                 <TabsTrigger value="details">Détails</TabsTrigger>
               </TabsList>
               <TabsContent value="description" className="py-4">
-                <p className="text-gray-700">{product.description}</p>
+                <p className="text-muted-foreground">{product.description}</p>
               </TabsContent>
               <TabsContent value="story" className="py-4">
-                <p className="text-gray-700">{product.story}</p>
+                <p className="text-muted-foreground">{product.story}</p>
                 <div className="flex items-center gap-2 mt-4">
-                  <Recycle size={20} className="text-upcycle-teal" />
-                  <span className="text-sm text-upcycle-teal">
+                  <Recycle size={20} className="text-green-600" />
+                  <span className="text-sm text-green-600">
                     Ce vêtement a permis d'économiser environ 2700 litres d'eau par rapport à une production neuve
                   </span>
                 </div>
@@ -137,15 +129,15 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               <TabsContent value="details" className="py-4">
                 <div className="space-y-3">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Taille</span>
+                    <span className="text-muted-foreground">Taille</span>
                     <span className="font-medium">{product.size}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">État</span>
+                    <span className="text-muted-foreground">État</span>
                     <span className="font-medium">{product.condition}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Matériaux</span>
+                    <span className="text-muted-foreground">Matériaux</span>
                     <div className="text-right">
                       {product.materials.map((material, index) => (
                         <span key={index} className="font-medium block">{material}</span>
@@ -163,8 +155,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                   {['XS', 'S', 'M', 'L', 'XL'].map((size) => (
                     <Button
                       key={size}
-                      variant={selectedSize === size ? "default" : "outline"}
-                      style={selectedSize === size ? accentStyle : {}}
+                      variant={selectedSize === size ? 'default' : 'outline'}
                       onClick={() => setSelectedSize(size)}
                       className="w-12 h-12"
                     >
@@ -175,7 +166,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               </div>
 
               <div className="flex gap-4">
-                <Button className="flex-1 h-12" style={accentStyle} onClick={handleAddToCart}>
+                <Button className="flex-1 h-12" onClick={handleAddToCart}>
                   <ShoppingCart className="mr-2" size={18} />
                   Ajouter au panier
                 </Button>

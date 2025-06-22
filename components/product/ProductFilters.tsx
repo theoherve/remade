@@ -84,14 +84,14 @@ export function ProductFilters({
         <AccordionItem value="price">
           <AccordionTrigger className="hover:text-primary">Prix</AccordionTrigger>
           <AccordionContent>
-            <div className="space-y-4">
+            <div className="space-y-4 mt-2">
               <Slider
                 value={priceRange}
                 onValueChange={setPriceRange}
                 min={0}
                 max={1000}
                 step={10}
-                className="[&_[role=slider]]:bg-primary"
+                className="[&_[role=slider]]:bg-background [&_[role=slider]]:border-primary"
               />
               <div className="flex items-center gap-2">
                 <Input type="number" placeholder="Min" value={priceRange[0]} onChange={e => setPriceRange([+e.target.value, priceRange[1]])} className="focus-visible:ring-primary border-primary" />
